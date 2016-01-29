@@ -1,36 +1,55 @@
 #######################################
 # Syntax Coloring Map For I2C_eepromV2
-#######################################
-I2C_eepromV2    KEYWORD1
+#
+# ======================================================
+# BIG BOLD HINT:
+# Do not use space characters between token and KEYWORDx
+#       ------ USE A _SINGLE_ TAB -------
+# 	--- Again: only _one_ tab !!! ---
+#
+# ... or the whole thing is messed up from the point
+# where the first <space> was found -- without notice !!
+#	===========================================
+#	==> This is a readable 'binary file' !! <==
+#	===========================================
+#
+# You _MUST_ close the Arduino IDE _entirely_  in order 
+# to have changes in effect.
+# ======================================================
 
 #######################################
-# Datatypes (KEYWORD1)
+# For your '#include <blah.h>
 #######################################
-
-I2C_eeprom      KEYWORD1
+I2C_eepromV2	KEYWORD1
 
 #######################################
-# Methods and Functions (KEYWORD2)
+# Datatypes and contructors (KEYWORD1)
 #######################################
+I2C_eeprom	KEYWORD1
 
-readByte        KEYWORD2
-writeByte       KEYWORD2
-setBlock        KEYWORD2
-readBlock       KEYWORD2
-writeBlock      KEYWORD2
-
-status          KEYWORD2
-get_pages       KEYWORD2
-get_pageSize    KEYWORD2
-get_Kbytes      KEYWORD2
-get_addrBits    KEYWORD2
-get_addrWords   KEYWORD2
-get_speed       KEYWORD2
-
-#########################
+########################
 #	Instances ...
 ########################
-I2C_eeprom      KEYWORD2
+I2C_eeprom	KEYWORD2
+
+##########################################
+# Methods and Functions (Level 2 keywords)
+##########################################
+readByte	KEYWORD2
+writeByte	KEYWORD2
+setBlock	KEYWORD2
+readBlock	KEYWORD2
+writeBlock	KEYWORD2
+
+get_deviceAddress	KEYWORD2
+get_deviceSize	KEYWORD2
+get_pages	KEYWORD2
+get_pageSize	KEYWORD2
+get_Kbytes	KEYWORD2
+get_addrBits	KEYWORD2
+get_addrWords	KEYWORD2
+get_speed	KEYWORD2
+status		KEYWORD2
 
 #######################################
 # Constants (LITERAL1)

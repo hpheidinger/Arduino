@@ -1,10 +1,11 @@
 //
-//    FILE: I2C_eepromV2.cpp
-//  AUTHOR: Rob Tillaart (original author)
-//  AUTHOR: H.P. Heidinger for release 2.0.0b
-// VERSION: 2.0.0b
-// PURPOSE: I2C_eeprom library for Arduino with EEPROM 24xx01..512; 24xx1024 not yet supported
-//
+//    FILE:	I2C_eepromV2.cpp
+//  AUTHOR:	Rob Tillaart (original author)
+//  AUTHOR:	H.P. Heidinger for release 2.0.0b
+// VERSION:	2.0.0b
+// PURPOSE: 	I2C_eeprom library for Arduino with EEPROM 24xx01..512;
+//		24xx1024 not yet supported
+// ----------------------------------------------------------------------------------------
 // HISTORY:
 // 0.1.00 - 2011-01-21 initial version
 // 0.1.01 - 2011-02-07 added setBlock function
@@ -31,6 +32,7 @@
 // 			- Changed coding style from 'PASCALish/JAVAish' to clean C-style
 // 			- Removed constructor #1 which used hard-coded page size for all PROMs
 // 			  supplyed by a '#define'
+//			- Removed constructor #1, since it relied on assumptions
 // 			- Changed device determination from construtor #2
 // 			  Now the 'type code' of the PROM is passed; i.e. 24c64 passes '64'
 // 			  as second argument ... rest is done by a "rope ladder" ...
@@ -47,6 +49,8 @@
 // 				msg = <instance>.status();
 // 				Serial.println(msg);
 //
+//				... or simply: Serial.println( <instance>.status() );
+//
 // 			- Introduced get_XXXX functions that gets the guts separately:
 //
 // 				uint8_t  I2C_eeprom::get_deviceAddress()   { return _deviceAddress; }
@@ -61,8 +65,8 @@
 // 			  
 // 			  These two save alot of hard-coded '#defines ' and are deterministic ...
 // 				
-// 			- Lots of cleanups 
-//			- Checks with a 24C64 [ST]; no others available ... unfortunately
+// 			- Lots of cleanups and code optimizations
+//			- Checks were made with a 24C64 [ST]; no others available ... unfortunately
 //			- Bugs?? Find them and keep 'em in a warm place ...
 //
 //
@@ -93,11 +97,11 @@
 //
 // deviceAddress is the address on the I2C bus
 //
-// Pass DEVtype as the integer following the type 'xx' in "24xx"
+// DEVtype as the integer following the type 'xx' in "24xx"
 // Examples:	For a 24C01	pass 1
 //	 	For a 24C04 	pass 4
 //	 	For a 24C64 	pass 64
-//		For a 24LC256 	pass 256
+//		For a 24LC128 	pass 128
 //		... a.s.o.
 //
 I2C_eeprom::I2C_eeprom(const uint8_t deviceAddress, const unsigned int DEVtype) {
